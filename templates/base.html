@@ -1,0 +1,52 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMDB Movies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white min-h-screen font-['Inter']">
+    <nav class="bg-gray-900/80 backdrop-blur-lg border-b border-gray-800/50 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center gap-2">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-400 transition-all">TMDB Movies</span>
+                </a>
+                <form action="{{ url_for('movies.search') }}" method="GET" class="flex-1 max-w-2xl mx-8">
+                    <div class="relative">
+                        <input type="text" 
+                               name="query" 
+                               placeholder="Buscar filmes..." 
+                               class="w-full px-5 py-3 rounded-xl bg-gray-800/50 border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all placeholder-gray-400 backdrop-blur-sm"
+                               value="{{ request.args.get('query', '') }}">
+                        <button type="submit" 
+                                class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600/80 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 text-sm font-medium">
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+                <div class="flex items-center gap-4">
+                    <a href="{{ url_for('movies.search') }}" class="text-sm bg-blue-600/80 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all">Buscar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto px-4 py-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-gray-800/50 mt-12 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 font-medium">
+                Desenvolvido com 
+                <span class="text-red-500">♥</span> 
+                usando dados da TMDB API
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center py-12">
+    <h1 class="text-4xl font-bold text-blue-400 mb-4">404 - Página não encontrada</h1>
+    <p class="text-gray-300 mb-8">O conteúdo que você procura não foi encontrado.</p>
+    <a href="{{ url_for('movies.index') }}" 
+       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
+        Voltar para Home
+    </a>
+</div>
+{% endblock %}
